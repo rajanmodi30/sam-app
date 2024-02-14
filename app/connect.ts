@@ -29,8 +29,9 @@ export const handler = async (event: APIGatewayProxyWebsocketEventV2, context: C
         const newConnection = await dynamoDbClient.send(putCommand);
         console.log({ newConnection });
     } catch (err) {
+        console.error(err);
         return { statusCode: 500, body: 'Failed to connect: ' + JSON.stringify(err) };
     }
 
-    return { statusCode: 200, body: 'Connected.', context };
+    return { statusCode: 200, body: 'Connected.' };
 };
